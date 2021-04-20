@@ -6,11 +6,17 @@
 //
 
 import UIKit
+import AVKit
 
 final class DetailViewController: BaseViewController {
     
+    var track: Track?
+    var avPlayer: AVPlayer = AVPlayer()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        configurePlayer()
     }
 
     static func instantiate() -> DetailViewController? {
@@ -20,6 +26,16 @@ final class DetailViewController: BaseViewController {
         else { return nil }
     
         return viewController
+    }
+    
+    func configurePlayer() {
+        guard let previewUrl = track?.previewUrl,
+              let url = URL(string: previewUrl)
+        else { return }
+        
+        let avPlayerItem: AVPlayerItem = AVPlayerItem(url: url)
+        avPlayer.replaceCurrentItem(with: avPlayerItem)
+        avPlayer.play()
     }
     
 }

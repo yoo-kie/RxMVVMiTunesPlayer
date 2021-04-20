@@ -14,4 +14,5 @@ struct ITunes: Decodable {
 
 struct Track: Decodable {
     var trackName: String
+    var previewUrl: String
 }
