@@ -28,6 +28,16 @@ final class ResultViewController: BaseViewController {
                 cell.textLabel?.text = track.trackName
             }
             .disposed(by: disposeBag)
+        
+        tableView.rx.modelSelected(Track.self)
+            .subscribe(
+                onNext: { [weak self] track in
+                    guard let vc = DetailViewController.instantiate() else { return }
+                    vc.track = track
+                    self?.present(vc, animated: true, completion: nil)
+                }
+            )
+            .disposed(by: disposeBag)
     }
     
 }
