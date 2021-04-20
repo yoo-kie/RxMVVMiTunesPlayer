@@ -1,0 +1,6 @@
+framework module Pods_RxMVVMiTunes_RxMVVMiTunesUITests {
+  umbrella header "Pods-RxMVVMiTunes-RxMVVMiTunesUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}
