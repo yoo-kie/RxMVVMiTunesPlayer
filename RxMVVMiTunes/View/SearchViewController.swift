@@ -6,10 +6,15 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
-final class SearchViewController: BaseViewController {
+final class SearchViewController: BaseViewController, UISearchBarDelegate {
 
+    let disposeBag: DisposeBag = DisposeBag()
     var coordinator: SearchCoordinator?
+    var viewModel: SearchViewModel = SearchViewModel()
+    private var searchController: UISearchController?
         
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,25 +23,7 @@ final class SearchViewController: BaseViewController {
         navigationController?.navigationBar.prefersLargeTitles = true
         
         configureSearchController()
-        
-        let queryParams: [String: String] = [
-            "entity": "musicTrack",
-            "media": "music",
-            "limit": "10",
-            "country": "KR",
-            "lang": "ko_kr",
-            "term": "백예린"
-        ]
-        
-        let endpoint = EndPoint.fetchEndPoint(of: .search, with: queryParams)
-        NetworkManager.instance.request(endpoint: endpoint) { (result: Result<ITunes, APIError>) in
-            switch result {
-            case .success(let iTunes):
-                print(iTunes)
-            case .failure(let error):
-                print(error)
-            }
-        }
+        bind()
     }
     
     private func configureSearchController() {
@@ -45,9 +32,11 @@ final class SearchViewController: BaseViewController {
         guard let resultVC = storyboard.instantiateViewController(identifier: "ResultViewController") as? ResultViewController
         else { return }
         
-        let searchController = UISearchController(searchResultsController: resultVC)
+        resultVC.viewModel = viewModel
+        searchController = UISearchController(searchResultsController: resultVC)
         navigationItem.searchController = searchController
-        searchController.searchBar.placeholder = "아티스트, 노래, 가사 등"
+        searchController?.searchBar.placeholder = "아티스트, 노래, 가사 등"
+        searchController?.searchBar.delegate = self
     }
     
     static func instantiate() -> SearchViewController? {
@@ -57,6 +46,19 @@ final class SearchViewController: BaseViewController {
         else { return nil }
     
         return viewController
+    }
+    
+    func bind() {
+        searchController?.searchBar.rx.searchButtonClicked
+            .subscribe(
+                onNext: { [weak self] in
+                    guard let self = self else { return }
+                    self.searchController?.searchBar.rx.text
+                        .bind(to: self.viewModel.input.term)
+                        .disposed(by: self.disposeBag)
+                }
+            )
+            .disposed(by: disposeBag)
     }
     
 }
