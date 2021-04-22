@@ -8,17 +8,14 @@
 import UIKit
 
 protocol Coordinator {
-    
     var parentCoordinator: Coordinator? { get set }
     var navigationController: UINavigationController? { get set }
     
     init(parentCoordinator: Coordinator?, navigationController: UINavigationController?)
     func start()
-    
 }
 
 class AppCoordinator: Coordinator {
-    
     var parentCoordinator: Coordinator?
     var navigationController: UINavigationController?
     
@@ -30,7 +27,7 @@ class AppCoordinator: Coordinator {
     }
     
     func start() {
-        guard let vc = SearchViewController.instantiate() else { return }
+        guard let vc = SearchViewController.instantiate(viewModel: SearchViewModel()) else { return }
         
         let navigationController = UINavigationController(rootViewController: vc)
     
@@ -42,5 +39,4 @@ class AppCoordinator: Coordinator {
         window?.rootViewController = navigationController
         window?.makeKeyAndVisible()
     }
-    
 }

@@ -11,9 +11,9 @@ import RxCocoa
 
 final class SearchViewController: BaseViewController, UISearchBarDelegate {
 
-    let disposeBag: DisposeBag = DisposeBag()
+    private let disposeBag: DisposeBag = DisposeBag()
     var coordinator: SearchCoordinator?
-    var viewModel: SearchViewModel = SearchViewModel()
+    var viewModel: SearchViewModel!
     private var searchController: UISearchController?
         
     override func viewDidLoad() {
@@ -26,34 +26,35 @@ final class SearchViewController: BaseViewController, UISearchBarDelegate {
         bind()
     }
     
-    private func configureSearchController() {
+    static func instantiate(viewModel: SearchViewModel) -> SearchViewController? {
         let storyboard = UIStoryboard.init(name: "Main", bundle: .main)
         
-        guard let resultVC = storyboard.instantiateViewController(identifier: "ResultViewController") as? ResultViewController
-        else { return }
+        guard let viewController = storyboard.instantiateInitialViewController() as? SearchViewController
+        else { return nil }
         
-        resultVC.viewModel = viewModel
-        searchController = UISearchController(searchResultsController: resultVC)
+        viewController.viewModel = viewModel
+    
+        return viewController
+    }
+    
+    private func configureSearchController() {
+        guard let vc = ResultViewController.instantiate(viewModel: viewModel) else { return }
+        
+        searchController = UISearchController(searchResultsController: vc)
         navigationItem.searchController = searchController
         searchController?.searchBar.placeholder = "아티스트, 노래, 가사 등"
         searchController?.searchBar.delegate = self
     }
     
-    static func instantiate() -> SearchViewController? {
-        let storyboard = UIStoryboard.init(name: "Main", bundle: .main)
-        
-        guard let viewController = storyboard.instantiateInitialViewController() as? SearchViewController
-        else { return nil }
-    
-        return viewController
-    }
-    
-    func bind() {
+    private func bind() {
         searchController?.searchBar.rx.searchButtonClicked
             .subscribe(
                 onNext: { [weak self] in
                     guard let self = self else { return }
                     self.searchController?.searchBar.rx.text
+                        .orEmpty
+                        .debounce(.milliseconds(100), scheduler: <#T##SchedulerType#>)
+                        .distinctUntilChanged()
                         .bind(to: self.viewModel.input.term)
                         .disposed(by: self.disposeBag)
                 }

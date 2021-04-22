@@ -13,16 +13,28 @@ final class ResultViewController: BaseViewController {
     
     @IBOutlet var tableView: UITableView!
     
-    let disposeBag = DisposeBag()
-    var viewModel: SearchViewModel?
+    private let disposeBag = DisposeBag()
+    var viewModel: SearchViewModel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         bind()
     }
     
-    func bind() {
-        viewModel?.output.tracks
+    static func instantiate(viewModel: SearchViewModel) -> ResultViewController? {
+        let storyboard = UIStoryboard.init(name: "Main", bundle: .main)
+        
+        guard let viewController = storyboard.instantiateViewController(identifier: "ResultViewController") as? ResultViewController
+        else { return nil }
+        
+        viewController.viewModel = viewModel
+    
+        return viewController
+    }
+    
+    private func bind() {
+        viewModel.output.tracks
             .asDriver()
             .drive(tableView.rx.items(cellIdentifier: "cell")) { row, track, cell in
                 cell.textLabel?.text = track.trackName
@@ -32,9 +44,18 @@ final class ResultViewController: BaseViewController {
         tableView.rx.modelSelected(Track.self)
             .subscribe(
                 onNext: { [weak self] track in
-                    guard let vc = DetailViewController.instantiate() else { return }
+                    guard let self = self,
+                          let vc = DetailViewController.instantiate(viewModel: DetailViewModel())
+                    else { return }
+                    
+                    // rx스럽게-!
                     vc.track = track
-                    self?.present(vc, animated: true, completion: nil)
+                    
+                    Observable<Track>.just(track)
+                        .bind(to: vc.viewModel.input.track)
+                        .disposed(by: self.disposeBag)
+                    
+                    self.present(vc, animated: true, completion: nil)
                 }
             )
             .disposed(by: disposeBag)

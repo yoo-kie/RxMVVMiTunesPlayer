@@ -9,6 +9,7 @@ import Foundation
 import RxSwift
 
 protocol ViewModelType {
+    
     associatedtype Input
     associatedtype Output
     
@@ -18,4 +19,5 @@ protocol ViewModelType {
     var output: Output { get }
     
     init()
+    
 }

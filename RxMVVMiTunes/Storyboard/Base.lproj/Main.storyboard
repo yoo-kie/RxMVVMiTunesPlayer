@@ -159,6 +159,14 @@
                             <constraint firstItem="6Bh-BH-Klq" firstAttribute="width" secondItem="tu8-WN-qRW" secondAttribute="width" multiplier="0.85" id="rjH-Ug-rX6"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="currentTimeLabel" destination="kxz-2L-X1V" id="H87-4w-q2p"/>
+                        <outlet property="durationLabel" destination="Ymk-TU-rl9" id="Hjf-IJ-OD5"/>
+                        <outlet property="imageView" destination="6Bh-BH-Klq" id="BMZ-vx-4Cd"/>
+                        <outlet property="playbackButton" destination="3XS-Ko-5iX" id="Vbq-ez-p4w"/>
+                        <outlet property="seekBar" destination="TjM-Ln-CgF" id="Gtd-O6-upv"/>
+                        <outlet property="titleLabel" destination="MtQ-kr-CKq" id="F3Q-gC-jX7"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gb2-Ue-Kj3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
