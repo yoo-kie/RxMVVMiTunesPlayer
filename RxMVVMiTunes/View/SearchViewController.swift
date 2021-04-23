@@ -53,7 +53,6 @@ final class SearchViewController: BaseViewController, UISearchBarDelegate {
                     guard let self = self else { return }
                     self.searchController?.searchBar.rx.text
                         .orEmpty
-                        .debounce(.milliseconds(100), scheduler: <#T##SchedulerType#>)
                         .distinctUntilChanged()
                         .bind(to: self.viewModel.input.term)
                         .disposed(by: self.disposeBag)
