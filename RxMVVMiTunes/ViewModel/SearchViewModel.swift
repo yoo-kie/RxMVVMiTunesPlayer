@@ -37,7 +37,7 @@ final class SearchViewModel: ViewModelType {
                 let queryParams: [String: String] = [
                     "entity": "musicTrack",
                     "media": "music",
-                    "limit": "10",
+                    "limit": "30",
                     "country": "KR",
                     "lang": "ko_kr",
                     "term": term

@@ -51,7 +51,10 @@ final class DetailViewModel: ViewModelType {
                 guard let self = self, let track = track
                 else { return }
                 
-                self._image.accept(UIImage(named: track.artworkUrl60))
+                ImageCacheManager.instance.fetchImage(with: track.artworkUrl100) { image in
+                    self._image.accept(image)
+                }
+                
                 self._titleText.accept(track.trackName)
                 
                 guard let url = URL(string: track.previewUrl)

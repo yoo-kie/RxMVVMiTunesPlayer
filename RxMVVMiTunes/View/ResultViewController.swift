@@ -19,6 +19,10 @@ final class ResultViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        tableView.register(
+            UINib(nibName: "ResultTableViewCell", bundle: .main),
+            forCellReuseIdentifier: "ResultTableViewCell"
+        )
         bind()
     }
     
@@ -36,8 +40,9 @@ final class ResultViewController: BaseViewController {
     private func bind() {
         viewModel.output.tracks
             .asDriver()
-            .drive(tableView.rx.items(cellIdentifier: "cell")) { row, track, cell in
-                cell.textLabel?.text = track.trackName
+            .drive(tableView.rx.items(cellIdentifier: "ResultTableViewCell")) { row, track, cell in
+                guard let cell = cell as? ResultTableViewCell else { return }
+                cell.configureCell(with: track)
             }
             .disposed(by: disposeBag)
         
