@@ -30,8 +30,6 @@ final class SearchViewModel: ViewModelType {
         input = Input(term: _term.asObserver())
         output = Output(tracks: _tracks.asDriver())
         
-        // 나중에 Service로 빼기
-        // _term flatmap 블록 api 쏴서 데이터 가져오고 bind해서 track
         _term.flatMap { term -> Observable<[Track]> in
             return Observable.create { observer -> Disposable in
                 guard let term = term else { return Disposables.create() }

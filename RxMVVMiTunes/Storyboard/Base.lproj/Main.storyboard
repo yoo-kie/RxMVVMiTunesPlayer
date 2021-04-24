@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -80,13 +81,13 @@
                                     <constraint firstAttribute="width" secondItem="6Bh-BH-Klq" secondAttribute="height" multiplier="1:1" id="5D8-e8-5bN"/>
                                 </constraints>
                             </imageView>
-                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="TjM-Ln-CgF">
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="TjM-Ln-CgF">
                                 <rect key="frame" x="29" y="456" width="356" height="31"/>
                                 <color key="tintColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </slider>
                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="oOi-78-law">
-                                <rect key="frame" x="29" y="623" width="356" height="31"/>
-                                <color key="tintColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <rect key="frame" x="29" y="630.5" width="356" height="31"/>
+                                <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </slider>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kxz-2L-X1V">
                                 <rect key="frame" x="31" y="489" width="41.5" height="18"/>
@@ -101,7 +102,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="34" translatesAutoresizingMaskIntoConstraints="NO" id="pKo-ck-r00">
-                                <rect key="frame" x="133.5" y="566" width="147" height="22"/>
+                                <rect key="frame" x="133" y="573.5" width="148.5" height="22"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FBo-eK-YFc">
                                         <rect key="frame" x="0.0" y="0.0" width="31" height="22"/>
@@ -112,15 +113,16 @@
                                         </state>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3XS-Ko-5iX">
-                                        <rect key="frame" x="65" y="0.0" width="17" height="22"/>
+                                        <rect key="frame" x="65" y="0.0" width="18.5" height="22"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                         <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="0.84705882349999995" colorSpace="calibratedRGB"/>
                                         <state key="normal">
-                                            <imageReference key="image" image="pause.fill" catalog="system" symbolScale="large"/>
+                                            <imageReference key="image" image="play.fill" catalog="system" symbolScale="large"/>
                                         </state>
+                                        <state key="selected" image="pause.fill" catalog="system"/>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r0D-Da-BoQ">
-                                        <rect key="frame" x="116" y="0.0" width="31" height="22"/>
+                                        <rect key="frame" x="117.5" y="0.0" width="31" height="22"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                         <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="0.84705882349999995" colorSpace="calibratedRGB"/>
                                         <state key="normal">
@@ -130,8 +132,8 @@
                                 </subviews>
                             </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="그건 아마 우리의 잘못은 아닐 거야" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MtQ-kr-CKq">
-                                <rect key="frame" x="31" y="517" width="352" height="24"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                <rect key="frame" x="31" y="522" width="352" height="26.5"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
                                 <color key="textColor" red="0.90588235294117647" green="0.19607843137254902" blue="0.34509803921568627" alpha="0.84705882352941175" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -150,7 +152,7 @@
                             <constraint firstItem="6Bh-BH-Klq" firstAttribute="top" secondItem="oiN-Ka-rfm" secondAttribute="top" constant="50" id="K4B-fG-PE2"/>
                             <constraint firstItem="oOi-78-law" firstAttribute="width" secondItem="MtQ-kr-CKq" secondAttribute="width" id="KqY-gA-ai1"/>
                             <constraint firstItem="pKo-ck-r00" firstAttribute="centerX" secondItem="MtQ-kr-CKq" secondAttribute="centerX" id="Po1-6u-h0E"/>
-                            <constraint firstItem="MtQ-kr-CKq" firstAttribute="top" secondItem="kxz-2L-X1V" secondAttribute="bottom" constant="10" id="QoU-Ue-0Vj"/>
+                            <constraint firstItem="MtQ-kr-CKq" firstAttribute="top" secondItem="kxz-2L-X1V" secondAttribute="bottom" constant="15" id="QoU-Ue-0Vj"/>
                             <constraint firstItem="pKo-ck-r00" firstAttribute="top" secondItem="MtQ-kr-CKq" secondAttribute="bottom" constant="25" id="Vsr-x8-vcT"/>
                             <constraint firstItem="kxz-2L-X1V" firstAttribute="top" secondItem="TjM-Ln-CgF" secondAttribute="bottom" constant="3" id="bhE-Sw-udy"/>
                             <constraint firstItem="TjM-Ln-CgF" firstAttribute="top" secondItem="6Bh-BH-Klq" secondAttribute="bottom" constant="10" id="dPK-V3-Rfy"/>
@@ -166,6 +168,7 @@
                         <outlet property="playbackButton" destination="3XS-Ko-5iX" id="Vbq-ez-p4w"/>
                         <outlet property="seekBar" destination="TjM-Ln-CgF" id="Gtd-O6-upv"/>
                         <outlet property="titleLabel" destination="MtQ-kr-CKq" id="F3Q-gC-jX7"/>
+                        <outlet property="volumeSlider" destination="oOi-78-law" id="JeK-Ty-XGV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gb2-Ue-Kj3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -177,6 +180,7 @@
         <image name="backward.fill" catalog="system" width="128" height="79"/>
         <image name="forward.fill" catalog="system" width="128" height="79"/>
         <image name="pause.fill" catalog="system" width="116" height="128"/>
+        <image name="play.fill" catalog="system" width="116" height="128"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

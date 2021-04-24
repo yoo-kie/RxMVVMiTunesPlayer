@@ -48,9 +48,6 @@ final class ResultViewController: BaseViewController {
                           let vc = DetailViewController.instantiate(viewModel: DetailViewModel())
                     else { return }
                     
-                    // rx스럽게-!
-                    vc.track = track
-                    
                     Observable<Track>.just(track)
                         .bind(to: vc.viewModel.input.track)
                         .disposed(by: self.disposeBag)
