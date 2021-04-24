@@ -23,6 +23,7 @@ final class ResultViewController: BaseViewController {
             UINib(nibName: "ResultTableViewCell", bundle: .main),
             forCellReuseIdentifier: "ResultTableViewCell"
         )
+        
         bind()
     }
     

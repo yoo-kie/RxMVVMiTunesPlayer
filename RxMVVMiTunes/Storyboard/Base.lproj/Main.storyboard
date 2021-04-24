@@ -87,7 +87,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6Bh-BH-Klq" customClass="CustomImageView" customModule="RxMVVMiTunes" customModuleProvider="target">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6Bh-BH-Klq">
                                 <rect key="frame" x="31" y="104" width="352" height="352"/>
                                 <color key="backgroundColor" red="0.90588235289999997" green="0.1960784314" blue="0.34509803919999998" alpha="0.84705882349999995" colorSpace="calibratedRGB"/>
                                 <constraints>

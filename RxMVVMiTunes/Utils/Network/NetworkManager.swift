@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import RxSwift
 
 struct EndPoint {
     var baseUrl: String = "https://itunes.apple.com"
@@ -27,8 +28,22 @@ struct EndPoint {
         return finalUrl
     }
 
-    static func fetchEndPoint(of path: Path, with params: [String: String]?) -> EndPoint {
-        return EndPoint(path: path, parameters: params)
+    static func fetchEndPoint(of path: Path, with term: String) -> EndPoint {
+        var queryParams: [String: String] = [:]
+        
+        switch path {
+        case .search:
+            queryParams = [
+                "entity": "musicTrack",
+                "media": "music",
+                "limit": "30",
+                "lang": "ko_kr",
+                "country": "KR",
+                "term": term
+            ]
+        }
+        
+        return EndPoint(path: path, parameters: queryParams)
     }
 }
 
@@ -47,26 +62,37 @@ final class NetworkManager {
     static let instance = NetworkManager()
     private init() {}
     
-    func request<T: Decodable>(endpoint: EndPoint, completion: @escaping (Result<T, APIError>) -> ()) {
-        let session = URLSession(configuration: .default)
-        session.dataTask(with: endpoint.url) { data, response, error in
-            guard error == nil else {
-                completion(.failure(.ResponseError))
-                return
+    func request<T: Decodable>(endpoint: EndPoint) -> Single<Result<T, APIError>> {
+        
+        return Single.create { observer in
+            let session = URLSession(configuration: .default)
+            let task = session.dataTask(with: endpoint.url) { data, response, error in
+                guard error == nil else {
+                    observer(.success(.failure(.ResponseError)))
+                    return
+                }
+        
+                guard let data = data, let response = response as? HTTPURLResponse,
+                      response.statusCode == 200
+                else {
+                    observer(.success(.failure(.StatusError)))
+                    return
+                }
+                    
+                do {
+                    let jsonData = try JSONDecoder().decode(T.self, from: data)
+                    observer(.success(.success(jsonData)))
+                } catch {
+                    observer(.success(.failure(.DecodingError)))
+                }
             }
-    
-            guard let data = data, let response = response as? HTTPURLResponse, response.statusCode == 200 else {
-                completion(.failure(.StatusError))
-                return
+            task.resume()
+            
+            return Disposables.create {
+                task.cancel()
             }
-                
-            do {
-                let jsonData = try JSONDecoder().decode(T.self, from: data)
-                completion(.success(jsonData))
-            } catch {
-                completion(.failure(.DecodingError))
-            }
-        }.resume()
+        }
+        
     }
     
 }

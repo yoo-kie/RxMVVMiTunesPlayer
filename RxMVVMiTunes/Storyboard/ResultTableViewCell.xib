@@ -25,16 +25,16 @@
                         </constraints>
                     </imageView>
                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="qC5-AR-Ep2">
-                        <rect key="frame" x="95" y="23.5" width="59" height="49"/>
+                        <rect key="frame" x="95" y="23.5" width="215" height="49"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="백예린" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CX5-Cz-4AE">
-                                <rect key="frame" x="0.0" y="0.0" width="59" height="20.5"/>
+                                <rect key="frame" x="0.0" y="0.0" width="215" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="아티스트" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xQL-4C-Azs">
-                                <rect key="frame" x="0.0" y="28.5" width="59" height="20.5"/>
+                                <rect key="frame" x="0.0" y="28.5" width="215" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -45,6 +45,7 @@
                 <constraints>
                     <constraint firstItem="SF7-5Z-RFS" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="8HP-en-MVg"/>
                     <constraint firstItem="qC5-AR-Ep2" firstAttribute="leading" secondItem="SF7-5Z-RFS" secondAttribute="trailing" constant="10" id="JqA-aE-b3R"/>
+                    <constraint firstAttribute="trailing" secondItem="qC5-AR-Ep2" secondAttribute="trailing" constant="10" id="a5D-sJ-mpy"/>
                     <constraint firstItem="qC5-AR-Ep2" firstAttribute="centerY" secondItem="SF7-5Z-RFS" secondAttribute="centerY" id="efX-ml-UUA"/>
                     <constraint firstItem="SF7-5Z-RFS" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="ogy-O5-RMw"/>
                 </constraints>
