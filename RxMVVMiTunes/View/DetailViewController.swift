@@ -73,7 +73,6 @@ final class DetailViewController: BaseViewController {
                     else { return }
                     
                     self.avPlayer.replaceCurrentItem(with: item)
-                    self.durationLabel.text = "\(CMTimeGetSeconds(item.duration))"
                 }
             )
             .disposed(by: disposeBag)
@@ -101,13 +100,22 @@ final class DetailViewController: BaseViewController {
                     else { return }
 
                     self.seekBar.value = Float(CMTimeGetSeconds(self.avPlayer.currentTime()) / CMTimeGetSeconds(item.duration))
-                    self.currentTimeLabel.text = "\(Int(CMTimeGetSeconds(self.avPlayer.currentTime())))"
+                    
+                    self.currentTimeLabel.text = "00:\(Int(CMTimeGetSeconds(self.avPlayer.currentTime())))"
+                    
+                    if self.avPlayer.currentItem!.status == .readyToPlay {
+                        self.durationLabel.text = "00:\(Int(CMTimeGetSeconds(item.duration)))"
+                    }
                 }
             )
             .disposed(by: disposeBag)
         
         volumeSlider.rx.value
             .bind(to: mpVolumeSlider.rx.value)
+            .disposed(by: disposeBag)
+        
+        mpVolumeSlider.rx.value
+            .bind(to: volumeSlider.rx.value)
             .disposed(by: disposeBag)
     }
     

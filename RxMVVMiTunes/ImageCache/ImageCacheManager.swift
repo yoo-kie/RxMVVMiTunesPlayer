@@ -6,15 +6,17 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 final class ImageCacheManager {
     
     static let instance = ImageCacheManager()
     private init() {}
+    
     var cache = NSCache<NSString, UIImage>()
     
-    func fetchImage(with url: String, completion: @escaping (UIImage) -> Void) {
-        
+    func fetchImage(with url: String, completion: @escaping (UIImage?) -> Void) {
         let cacheKey: NSString = NSString(string: url)
         
         if let image = ImageCacheManager.instance.cache.object(forKey: cacheKey) {

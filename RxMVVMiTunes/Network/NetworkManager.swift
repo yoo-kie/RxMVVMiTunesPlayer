@@ -34,7 +34,7 @@ struct EndPoint {
         switch path {
         case .search:
             queryParams = [
-                "entity": "musicTrack",
+                "entity": "song",
                 "media": "music",
                 "limit": "30",
                 "lang": "ko_kr",

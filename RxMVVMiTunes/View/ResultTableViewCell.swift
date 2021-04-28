@@ -25,6 +25,7 @@ final class ResultTableViewCell: UITableViewCell {
         ImageCacheManager.instance.fetchImage(with: track.artworkUrl100) { image in
             self.albumImageView.image = image
         }
+        
         titleLabel.text = track.trackName
     }
     
