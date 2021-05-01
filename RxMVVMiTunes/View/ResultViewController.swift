@@ -14,34 +14,44 @@ final class ResultViewController: BaseViewController {
     @IBOutlet var tableView: UITableView!
     
     private let disposeBag = DisposeBag()
-    var viewModel: SearchViewModel!
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        tableView.register(
-            UINib(nibName: "ResultTableViewCell", bundle: .main),
-            forCellReuseIdentifier: "ResultTableViewCell"
-        )
-        
-        bind()
-    }
+    var searchViewModel: SearchViewModel!
     
     static func instantiate(viewModel: SearchViewModel) -> ResultViewController? {
-        let storyboard = UIStoryboard.init(name: "Main", bundle: .main)
+        let storyboard = UIStoryboard.init(name: StoryBoard.Main.rawValue, bundle: .main)
         
-        guard let viewController = storyboard.instantiateViewController(identifier: "ResultViewController") as? ResultViewController
+        guard let viewController = storyboard.instantiateViewController(
+                identifier: ResultViewController.className
+            ) as? ResultViewController
         else { return nil }
         
-        viewController.viewModel = viewModel
+        viewController.searchViewModel = viewModel
     
         return viewController
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        configureTableView()
+        bind()
+    }
+    
+    private func configureTableView() {
+        tableView.register(
+            UINib(
+                nibName: ResultTableViewCell.className,
+                bundle: .main
+            ),
+            forCellReuseIdentifier: ResultTableViewCell.className
+        )
+    }
+    
     private func bind() {
-        viewModel.output.tracks
+        searchViewModel.output.tracks
             .asDriver()
-            .drive(tableView.rx.items(cellIdentifier: "ResultTableViewCell")) { row, track, cell in
+            .drive(tableView.rx.items(
+                    cellIdentifier: ResultTableViewCell.className)
+            ) { row, track, cell in
                 guard let cell = cell as? ResultTableViewCell else { return }
                 cell.configureCell(with: track)
             }

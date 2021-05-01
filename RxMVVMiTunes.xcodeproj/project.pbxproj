@@ -27,10 +27,12 @@
 		AEB94027262E66C700682380 /* ResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEB94026262E66C700682380 /* ResultViewController.swift */; };
 		AEB9403A262EA76A00682380 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEB94039262EA76A00682380 /* NetworkManager.swift */; };
 		AEB9403F262EA85100682380 /* ImageCacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEB9403E262EA85100682380 /* ImageCacheManager.swift */; };
-		AEB94049262ED55000682380 /* URLComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEB94048262ED55000682380 /* URLComponents.swift */; };
+		AEB94049262ED55000682380 /* URLComponents+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEB94048262ED55000682380 /* URLComponents+extension.swift */; };
 		AEB9404E262ED8D300682380 /* ITunes.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEB9404D262ED8D300682380 /* ITunes.swift */; };
 		AEB94059262F02EF00682380 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEB94058262F02EF00682380 /* SearchViewModel.swift */; };
 		AEB9405E262F07DB00682380 /* ViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEB9405D262F07DA00682380 /* ViewModelType.swift */; };
+		AEF98649263D390600559984 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF98648263D390600559984 /* Constant.swift */; };
+		AEF9864E263D3CEC00559984 /* NSObjectProtocol+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF9864D263D3CEC00559984 /* NSObjectProtocol+extension.swift */; };
 		B514CE706DA20D6A1D81D28F /* Pods_RxMVVMiTunes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0C2868A73F7FDBCFE7C8B6D /* Pods_RxMVVMiTunes.framework */; };
 /* End PBXBuildFile section */
 
@@ -81,10 +83,12 @@
 		AEB94026262E66C700682380 /* ResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultViewController.swift; sourceTree = "<group>"; };
 		AEB94039262EA76A00682380 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		AEB9403E262EA85100682380 /* ImageCacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCacheManager.swift; sourceTree = "<group>"; };
-		AEB94048262ED55000682380 /* URLComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLComponents.swift; sourceTree = "<group>"; };
+		AEB94048262ED55000682380 /* URLComponents+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLComponents+extension.swift"; sourceTree = "<group>"; };
 		AEB9404D262ED8D300682380 /* ITunes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ITunes.swift; sourceTree = "<group>"; };
 		AEB94058262F02EF00682380 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 		AEB9405D262F07DA00682380 /* ViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelType.swift; sourceTree = "<group>"; };
+		AEF98648263D390600559984 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
+		AEF9864D263D3CEC00559984 /* NSObjectProtocol+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSObjectProtocol+extension.swift"; sourceTree = "<group>"; };
 		B895D315B19906C482E18EF5 /* Pods-RxMVVMiTunes-RxMVVMiTunesUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RxMVVMiTunes-RxMVVMiTunesUITests.release.xcconfig"; path = "Target Support Files/Pods-RxMVVMiTunes-RxMVVMiTunesUITests/Pods-RxMVVMiTunes-RxMVVMiTunesUITests.release.xcconfig"; sourceTree = "<group>"; };
 		C0C2868A73F7FDBCFE7C8B6D /* Pods_RxMVVMiTunes.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RxMVVMiTunes.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA1D5A636DBBCEBE0F0CFDF6 /* Pods-RxMVVMiTunesTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RxMVVMiTunesTests.release.xcconfig"; path = "Target Support Files/Pods-RxMVVMiTunesTests/Pods-RxMVVMiTunesTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -255,6 +259,7 @@
 			isa = PBXGroup;
 			children = (
 				AEB94043262EA86100682380 /* Extension */,
+				AEF98648263D390600559984 /* Constant.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -270,7 +275,8 @@
 		AEB94043262EA86100682380 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
-				AEB94048262ED55000682380 /* URLComponents.swift */,
+				AEB94048262ED55000682380 /* URLComponents+extension.swift */,
+				AEF9864D263D3CEC00559984 /* NSObjectProtocol+extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -546,14 +552,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				AEB94059262F02EF00682380 /* SearchViewModel.swift in Sources */,
+				AEF98649263D390600559984 /* Constant.swift in Sources */,
 				AEB94008262DDA3B00682380 /* BaseViewController.swift in Sources */,
 				AEB9403A262EA76A00682380 /* NetworkManager.swift in Sources */,
-				AEB94049262ED55000682380 /* URLComponents.swift in Sources */,
+				AEB94049262ED55000682380 /* URLComponents+extension.swift in Sources */,
 				AEB93FF4262D5CAA00682380 /* AppCoordinator.swift in Sources */,
 				AEB93FBD262B2BC100682380 /* SearchViewController.swift in Sources */,
 				AEA1F1152634104700766F23 /* ResultTableViewCell.swift in Sources */,
 				AEB9400D262DE19300682380 /* DetailViewController.swift in Sources */,
 				AEB9405E262F07DB00682380 /* ViewModelType.swift in Sources */,
+				AEF9864E263D3CEC00559984 /* NSObjectProtocol+extension.swift in Sources */,
 				AEB93FB9262B2BC100682380 /* AppDelegate.swift in Sources */,
 				AEB93FBB262B2BC100682380 /* SceneDelegate.swift in Sources */,
 				AEB94012262DE20B00682380 /* SearchCoordinator.swift in Sources */,

@@ -36,9 +36,9 @@ final class DetailViewController: BaseViewController {
     }
 
     static func instantiate(viewModel: DetailViewModel) -> DetailViewController? {
-        let storyboard = UIStoryboard.init(name: "Main", bundle: .main)
+        let storyboard = UIStoryboard.init(name: StoryBoard.Main.rawValue, bundle: .main)
         
-        guard let viewController = storyboard.instantiateViewController(identifier: "DetailViewController") as? DetailViewController
+        guard let viewController = storyboard.instantiateViewController(identifier: DetailViewController.className) as? DetailViewController
         else { return nil }
         
         viewController.viewModel = viewModel

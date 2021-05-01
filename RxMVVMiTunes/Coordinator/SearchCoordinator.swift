@@ -12,7 +12,10 @@ class SearchCoordinator: Coordinator {
     var parentCoordinator: Coordinator?
     var navigationController: UINavigationController?
     
-    required init(parentCoordinator: Coordinator?, navigationController: UINavigationController?) {
+    required init(
+        parentCoordinator: Coordinator?,
+        navigationController: UINavigationController?
+    ) {
         self.parentCoordinator = parentCoordinator
         self.navigationController = navigationController
     }
