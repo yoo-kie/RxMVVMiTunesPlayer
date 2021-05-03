@@ -43,7 +43,7 @@ final class SearchViewModel: ViewModelType {
                             case .success(let iTunes):
                                 observer.onNext(iTunes.results)
                             case .failure(let error):
-                                observer.onError(error)
+                                ErrorUtil.instance.logError(error: error)
                             }
                         }
                     )
