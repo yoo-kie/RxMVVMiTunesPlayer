@@ -11,7 +11,7 @@ class ErrorUtil {
     static let instance = ErrorUtil()
     private init() {}
     
-    func logError(error: APIError) {
+    func logError<T>(error: T) where T: LocalizedError {
         guard let errordesc = error.errorDescription,
               let reason = error.failureReason,
               let help = error.helpAnchor,

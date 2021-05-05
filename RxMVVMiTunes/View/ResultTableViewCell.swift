@@ -22,8 +22,13 @@ final class ResultTableViewCell: UITableViewCell {
     }
     
     func configureCell(with track: Track) {
-        ImageCacheManager.instance.fetchImage(with: track.artworkUrl100) { image in
-            self.albumImageView.image = image
+        ImageManager.instance.fetchImage(with: track.artworkUrl100) { result in
+            switch result {
+            case .success(let image):
+                self.albumImageView.image = image
+            case .failure(let error):
+                ErrorUtil.instance.logError(error: error)
+            }
         }
         
         titleLabel.text = track.trackName
