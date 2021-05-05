@@ -35,6 +35,7 @@ final class SearchViewModel: ViewModelType {
                 guard let term = term else { return Disposables.create() }
                         
                 let endpoint = EndPoint.fetchEndPoint(of: .search, with: term)
+                
                 let response: Single<Result<ITunes, APIError>> = NetworkManager.instance.request(endpoint: endpoint)
                 response.asObservable()
                     .subscribe(

@@ -27,6 +27,7 @@ final class ResultTableViewCell: UITableViewCell {
         }
         
         titleLabel.text = track.trackName
+        subTitleLabel.text = track.artistName
     }
     
 }

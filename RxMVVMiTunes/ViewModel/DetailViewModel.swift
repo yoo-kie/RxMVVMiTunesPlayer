@@ -68,3 +68,5 @@ final class DetailViewModel: ViewModelType {
     }
     
 }
+
+

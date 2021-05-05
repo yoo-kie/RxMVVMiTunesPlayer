@@ -13,6 +13,7 @@ import MediaPlayer
 
 final class DetailViewController: BaseViewController {
     
+    @IBOutlet var wrapperView: UIView!
     @IBOutlet var imageView: UIImageView!
     @IBOutlet var seekBar: UISlider!
     @IBOutlet var currentTimeLabel: UILabel!
@@ -28,9 +29,8 @@ final class DetailViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        seekBar.setThumbImage(UIImage.init(), for: .normal)
         
+        setUI()
         configureVolumeView()
         bind()
     }
@@ -44,6 +44,19 @@ final class DetailViewController: BaseViewController {
         viewController.viewModel = viewModel
     
         return viewController
+    }
+    
+    private func setUI() {
+        wrapperView.layer.cornerRadius = 12
+        wrapperView.layer.shadowColor = UIColor.darkGray.cgColor
+        wrapperView.layer.shadowOffset = CGSize(width: 5, height: 5)
+        wrapperView.layer.shadowRadius = 12.0
+        wrapperView.layer.shadowOpacity = 0.9
+        
+        imageView.layer.cornerRadius = 12
+        imageView.clipsToBounds = true
+        
+        seekBar.setThumbImage(UIImage.init(), for: .normal)
     }
     
     private func configureVolumeView() {
