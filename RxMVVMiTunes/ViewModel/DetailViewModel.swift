@@ -18,7 +18,7 @@ final class DetailViewModel: ViewModelType {
     }
     
     struct Output {
-        var image: Driver<UIImage?>
+        var image: Driver<String?>
         var currentTime: Driver<Int?>
         var duration: Driver<Int?>
         var titleText: Driver<String?>
@@ -30,7 +30,7 @@ final class DetailViewModel: ViewModelType {
     let output: Output
     
     private var _track: BehaviorSubject<Track?> = .init(value: nil)
-    private var _image: BehaviorRelay<UIImage?> = .init(value: nil)
+    private var _image: BehaviorRelay<String?> = .init(value: nil)
     private var _currentTime: BehaviorRelay<Int?> = .init(value: nil)
     private var _duration: BehaviorRelay<Int?> = .init(value: nil)
     private var _titleText: BehaviorRelay<String?> = .init(value: nil)
@@ -51,15 +51,7 @@ final class DetailViewModel: ViewModelType {
                 guard let self = self, let track = track
                 else { return }
                 
-                ImageManager.instance.fetchImage(with: track.artworkUrl100) { result in
-                    switch result {
-                    case .success(let image):
-                        self._image.accept(image)
-                    case .failure(let error):
-                        ErrorUtil.instance.logError(error: error)
-                    }
-                }
-                
+                self._image.accept(track.artworkUrl100)
                 self._titleText.accept(track.trackName)
                 
                 guard let url = URL(string: track.previewUrl)

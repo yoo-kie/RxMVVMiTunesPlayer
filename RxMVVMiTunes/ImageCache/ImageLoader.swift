@@ -1,28 +1,20 @@
 //
-//  ImageCacheManager.swift
+//  ImageLoader.swift
 //  RxMVVMiTunes
 //
-//  Created by 유연주 on 2021/04/20.
+//  Created by 유연주 on 2021/05/07.
 //
 
 import UIKit
-import RxSwift
-import RxCocoa
 
-final class ImageManager {
+final class ImageLoader {
     
-    static let instance = ImageManager()
-    private init() {}
-    
-    private var cache = NSCache<NSString, UIImage>()
-    private var imageUrl: String?
+    private var task: URLSessionTask?
     
     func fetchImage(with url: String, completion: @escaping (Result<UIImage, ImageError>) -> Void) {
         let cacheKey: NSString = NSString(string: url)
         
-        imageUrl = url
-        
-        if let image = ImageManager.instance.cache.object(forKey: cacheKey) {
+        if let image = ImageCache.instance.cache.object(forKey: cacheKey) {
             completion(.success(image))
         }
         
@@ -33,7 +25,7 @@ final class ImageManager {
             return
         }
         
-        let task = session.dataTask(with: url) { (data, response, error) in
+        task = session.dataTask(with: url) { (data, response, error) in
             guard error == nil else {
                 completion(.failure(.ResponseError))
                 return
@@ -41,16 +33,20 @@ final class ImageManager {
             
             DispatchQueue.main.async {
                 if let data = data, let image = UIImage(data: data) {
-                    if self.imageUrl == url.absoluteString {
-                        completion(.success(image))
-                    }
-                    
-                    ImageManager.instance.cache.setObject(image, forKey: cacheKey)
+                    completion(.success(image))
+                    ImageCache.instance.cache.setObject(image, forKey: cacheKey)
                 }
             }
         }
         
+        guard let task = task else { return }
+
         task.resume()
+    }
+    
+    func cancelTask() {
+        guard let task = task else { return }
+        task.cancel()
     }
     
 }

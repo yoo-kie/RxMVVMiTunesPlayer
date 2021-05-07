@@ -9,7 +9,7 @@ import UIKit
 
 final class ResultTableViewCell: UITableViewCell {
 
-    @IBOutlet var albumImageView: UIImageView!
+    @IBOutlet var albumImageView: ImageView!
     @IBOutlet var titleLabel: UILabel!
     @IBOutlet var subTitleLabel: UILabel!
     
@@ -22,17 +22,16 @@ final class ResultTableViewCell: UITableViewCell {
     }
     
     func configureCell(with track: Track) {
-        ImageManager.instance.fetchImage(with: track.artworkUrl100) { result in
-            switch result {
-            case .success(let image):
-                self.albumImageView.image = image
-            case .failure(let error):
-                ErrorUtil.instance.logError(error: error)
-            }
-        }
-        
+        albumImageView.setImage(with: track.artworkUrl100)
         titleLabel.text = track.trackName
         subTitleLabel.text = track.artistName
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        albumImageView.image = nil
+        albumImageView.loader.cancelTask()
     }
     
 }

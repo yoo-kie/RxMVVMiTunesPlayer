@@ -19,7 +19,7 @@ class ErrorUtil {
         else { return }
         
         let message = """
-            ************* API ERROR **************
+            ************* ERROR **************
             ✏️ 내용 -> \(errordesc)
             ❓ 상세 사유 -> \(reason)
             ❗️ 도움말 -> \(help)

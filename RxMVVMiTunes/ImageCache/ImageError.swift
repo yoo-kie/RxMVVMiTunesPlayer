@@ -18,7 +18,7 @@ extension ImageError: LocalizedError {
         case .URLError:
             return "URL이 정상적이지 않습니다."
         case .ResponseError:
-            return "Reponse를 받지 못했습니다."
+            return "Image reponse를 받지 못했습니다."
         }
     }
     

@@ -69,10 +69,7 @@ final class DetailViewController: BaseViewController {
     }
     
     private func bind() {
-        viewModel.output.image
-            .asDriver()
-            .drive(imageView.rx.image)
-            .disposed(by: disposeBag)
+//        imageView.setImage(with: viewModel.output.image)
         
         viewModel.output.titleText
             .asDriver()
